@@ -3,10 +3,16 @@ A comprehensive guide to building a self-hosted homelab on a Dell Wyse 5070 usin
 
 <img width="1920" height="968" alt="OMV-panel" src="https://github.com/user-attachments/assets/d310b406-c730-4962-951e-a4229b50b88d" />
 
+<br></br>
+
+> [!CAUTION]
+> Throughout this guide, I use specific hostnames (e.g., `server`), local IP addresses (e.g., `192.168.18.4`, `192.168.18.1`), and a specific username (`jakub`) as examples. Please treat these as placeholders and replace them with the actual values corresponding to your own network and hardware environment.
+
+<br></br>
 
 ## 1. Creating a bootable USB
 
-1. Download Debian 12 netinst CD image (amd64):
+1. Download Debian netinst CD image (amd64):
 ```
 https://www.debian.org/CD/netinst/index.en.html
 ```
@@ -45,7 +51,7 @@ Since my Dell Wyse 5070 didn't come with WiFi antenna, for steps 2. and 3. I nee
 5. Enter a root password.
 6. Enter a full name (e.g. `jakub`), a name for the new user (e.g. `jakub`), but something else than `admin` and password.
 7. Select `Guided - use entire disk` partitioning method, select SATA disk and `All files in one partition (recommended for new users)`.
-8. After installing the base system, select package manager (e.g. `Poland`), Debian archive mirror (e.g. `deb.debian.org`), HTTP proxy information (can be blank).
+8. After installing the base system, select Debian archive mirror country (e.g. `Poland`), Debian archive mirror (e.g. `deb.debian.org`), HTTP proxy information (can be blank).
 9. Choose software to install - choose only `SSH server` and `standard system utilities`.
 10. Remove USB drive and reboot.
 
@@ -279,7 +285,7 @@ tailscale ip -4
 ssh root@192.168.18.4
 ```
 ```shell
-sudo tailscale funnel 8096
+sudo tailscale funnel --bg 8096
 ```
 7. Share your newly generated URL to whom you desire, so they can access your server.
 
