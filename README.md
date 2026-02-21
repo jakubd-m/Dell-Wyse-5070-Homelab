@@ -2,14 +2,11 @@
 A comprehensive guide to building a self-hosted homelab on a Dell Wyse 5070 using Debian, OpenMediaVault, Docker, Pi-hole, Jellyfin, Tailscale and BorgBackup.
 
 <img width="1920" height="968" alt="OMV-panel" src="https://github.com/user-attachments/assets/d310b406-c730-4962-951e-a4229b50b88d" />
-
 <br></br>
 
-> [!CAUTION]
+> [!NOTE]
 > Throughout this guide, I use specific hostnames (e.g., `server`), local IP addresses (e.g., `192.168.18.4`, `192.168.18.1`), and a specific username (`jakub`) as examples. Please treat these as placeholders and replace them with the actual values corresponding to your own network and hardware environment.
-
 <br></br>
-
 ## 1. Creating a bootable USB
 
 1. Download Debian netinst CD image (amd64):
@@ -27,7 +24,8 @@ sudo dd if=debian-13.3.0-amd64-netinst.iso of=/dev/sda bs=4M status=progress && 
 Use `lsblk` to identify the correct disk (USB) name, for example:
 <img width="991" height="186" alt="Pasted image 20260212194411" src="https://github.com/user-attachments/assets/de9ea6bc-5098-4fb5-959b-ebfffe75c9af" />
 
-**WARNING** - do not use the partition name ( `sda1`), use the **disk** name (`sda`):
+> [!WARNING]
+> Do not use the partition name ( `sda1`), use the **disk** name (`sda`).
 <img width="991" height="86" alt="Pasted image 20260212223845" src="https://github.com/user-attachments/assets/325569a3-c5a8-4a62-83d2-1373d88d734b" />
 
 ## 2. Configuring BIOS
@@ -136,7 +134,8 @@ sudo curl -sSL https://github.com/OpenMediaVault-Plugin-Developers/installScript
 9. Go to **Users**→ **Users** → select `Permissions` and add them for yourself.
    You can now access the folder from your desktop via SMB / local network, using your user's credentials, not the ones of OMV admin.
 
-   **WARNING** - Since this is a root partition, remember to carefully monitor the space. It's a good idea to leave **at least 10-15 GB of free storage** for the system files.
+> [!WARNING]
+> Since this is a root partition, remember to carefully monitor the space. It's a good idea to leave **at least 10-15 GB of free storage** for the system files.
 
 ### 6.2. `compose` plugin and docker
 
