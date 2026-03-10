@@ -356,3 +356,31 @@ systemctl list-timers borgmatic.timer
 ```shell
 sudo journalctl -u borgmatic.service -e
 ```
+
+## BONUS: Obsidian Sync with an Iphone via WebDAV
+
+1. Go to **Services** → **Compose** → **Files**, and add a new file.
+2. Name it `webdav`.
+3. In a text field, paste the following and save:
+```
+services:
+  webdav:
+    image: bytemark/webdav
+    restart: unless-stopped
+    ports:
+      - "8082:80"
+    environment:
+      - AUTH_TYPE=Basic
+      - USERNAME=jakub
+      - PASSWORD=YOUR_PASSWORD # set your password here
+    volumes:
+      - /media/zettelkasten:/var/lib/dav
+```
+4. Click on it and select `Up`.
+5. In Obsidian on your desktop and iOS device, disable safe mode and install the `Remotely Save` community plugin.
+6. In the plugin settings, choose Webdav as the remote service.
+7. Enter the server address: http://192.168.18.4:8082.
+8. Enter your username and password.
+
+> [!NOTE]
+> Another option is to use your Tailscale IP in the plugin settings. This allows seamless note synchronization from anywhere, not just your local Wi-Fi.
